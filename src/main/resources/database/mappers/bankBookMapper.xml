@@ -3,27 +3,27 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iu.home.bankBook.BankBookDAO">
-		<select id="getList" resultType="com.hm.start.bankBook.BankBookDTO">
+		<select id="getList" resultType="BankBookDTO">
 		SELECT * FROM BANKBOOK ORDER BY BOOKNUM ASC
 	</select>
 	
-	<select id="getDetail" parameterType="com.hm.start.bankBook.BankBookDTO" resultType="com.hm.start.bankBook.BankBookDTO">
+	<select id="getDetail" parameterType="BankBookDTO" resultType="BankBookDTO">
 		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
 	</select>
 	
-	<update id="setChangeSale" parameterType="com.hm.start.bankBook.BankBookDTO">
+	<update id="setChangeSale" parameterType="BankBookDTO">
 		UPDATE BANKBOOK SET BOOKSALE = #{bookSale} WHERE BOOKNUM = #{bookNum}
 	</update>
 	
-	<insert id="setBankBook" parameterType="com.hm.start.bankBook.BankBookDTO">
+	<insert id="setBankBook" parameterType="BankBookDTO">
 		INSERT INTO BANKBOOK VALUES(#{bookNum},#{bookName},#{bookRate},1)
 	</insert> 
 	
-	<update id="setUpdate" parameterType="com.hm.start.bankBook.BankBookDTO">
+	<update id="setUpdate" parameterType="BankBookDTO">
 		UPDATE BANKBOOK SET BOOKNAME = #{bookName}, BOOKRATE = #{bookRate} WHERE BOOKNUM = #{bookNum}
 	</update>
 	
-	<delete id="setDelete" parameterType="com.hm.start.bankBook.BankBookDTO">
+	<delete id="setDelete" parameterType="BankBookDTO">
 		DELETE BANKBOOK WHERE BOOKNUM = #{bookNum}
 	</delete>
 

@@ -7,6 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
+    <h3>Add vscode </h3>
 <h1>Index Page </h1>
 
 <c:if test="${empty sessionScope.member}">
