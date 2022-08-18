@@ -21,6 +21,7 @@
 </c:if>
 
 <a href="./member/search.iu">찾기</a>
+<a href="./bankbook/list.iu">book목록</a>
 
 </body>
 </html>
