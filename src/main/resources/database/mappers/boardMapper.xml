@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+<mapper namespace="com.hm.start.board.BoardDAO">
+	<select id="getList" resultType="BoardDTO">
+		SELECT * FROM BOARD
+	</select>
+	<insert id="setAdd" parameterType="BoardDTO">
+		INSERT INTO BOARD(POSTNUM, TITLE, CONTENTS, USERNAME, POSTDATE) VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{contents}, #{userName}, SYSDATE)
+	</insert>
+	<select id="getDetail" parameterType="BoardDTO" resultType="BoardDTO">
+		SELECT * FROM BOARD WHERE TITLE = #{title}
+	</select>
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE BOARD SET TITLE=#{title}, CONTENTS=#{contents} WHERE POSTNUM=#{postNum}
+	</update>
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE BOARD WHERE POSTNUM = #{postNum}
+	</delete>
+	<update id="setUpdateHit" parameterType="BoardDTO">
+		UPDATE BOARD SET HIT = HIT+1 WHERE POSTNUM=#{postNum}
+	</update>
+</mapper>

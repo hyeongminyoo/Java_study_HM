@@ -34,6 +34,7 @@ public class BankBookController {
 		System.out.println("detail");
 		System.out.println("bookNum:"+ bankBookDTO.getBookNum());
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		System.out.println(bankBookDTO.getBookContents());
 		//return "bankbook/detail";
 		mv.setViewName("bankbook/detail");
 		mv.addObject("detail", bankBookDTO);

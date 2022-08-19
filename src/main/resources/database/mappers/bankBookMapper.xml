@@ -16,11 +16,11 @@
 	</update>
 	
 	<insert id="setBankBook" parameterType="BankBookDTO">
-		INSERT INTO BANKBOOK VALUES(#{bookNum},#{bookName},#{bookRate},1)
+		INSERT INTO BANKBOOK VALUES(#{bookNum},#{bookName},#{bookRate},1,#{bookContents})
 	</insert> 
 	
 	<update id="setUpdate" parameterType="BankBookDTO">
-		UPDATE BANKBOOK SET BOOKNAME = #{bookName}, BOOKRATE = #{bookRate} WHERE BOOKNUM = #{bookNum}
+		UPDATE BANKBOOK SET BOOKNAME = #{bookName}, BOOKRATE = #{bookRate}, BOOKCONTENTS=#{bookContents} WHERE BOOKNUM = #{bookNum}
 	</update>
 	
 	<delete id="setDelete" parameterType="BankBookDTO">

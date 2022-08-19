@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 </head>
 <body>
 	<h3>BankBookUpdate Page</h3>
@@ -20,6 +22,9 @@
 	</div>
 	<div>
 		<input type="text" name="bookSale" readonly value="${requestScope.update.bookSale}" >
+	</div>
+	<div>
+		<textarea rows="30" cols="30" name="bookContents">${requestScope.update.bookContents}</textarea>
 	</div>
 		<button type="submit">수정</button>
 		<input type="submit" value="수정">
