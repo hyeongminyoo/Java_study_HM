@@ -1,6 +1,5 @@
-package com.hm.start.board;
+package com.hm.start.notice;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,39 +14,37 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hm.start.bankMembers.BankMembersDTO;
 
 @Controller
-@RequestMapping("/board/*")
-public class BoardController {
+@RequestMapping(value = "/notice/*")
+public class NoticeController {
 	
 	@Autowired
-	private BoardService boardService;
-	
+	private NoticeService noticeService;
 	
 	@RequestMapping(value="list.iu", method = RequestMethod.GET)
 	public ModelAndView getList(ModelAndView mv) throws Exception {
 		System.out.println("게시판 목록");
-		List<BoardDTO> ar = boardService.getList();
+		List<NoticeDTO> ar = noticeService.getList();
 		mv.addObject("list", ar);
-		mv.setViewName("board/list");
+		mv.setViewName("notice/list");
 		
 		return mv;
 	}
 	
 	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
-	public ModelAndView getDetail(HttpSession session,ModelAndView mv, BoardDTO boardDTO) throws Exception {
+	public ModelAndView getDetail(HttpSession session,ModelAndView mv, NoticeDTO noticeDTO) throws Exception {
 		System.out.println("상세페이지");
 		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
 		System.out.println(bankMembersDTO);
 		if(bankMembersDTO == null) {
-			boardService.setUpdateHit(boardDTO);
+			noticeService.setUpdateHit(noticeDTO);
+		}else {
+			if(bankMembersDTO.getUserName().equals(noticeDTO.getWriter()) == false){
+				noticeService.setUpdateHit(noticeDTO);
+			}
 		}
-//		else {
-//			if(bankMembersDTO.getUserName().equals(boardDTO.getUserName()) == false){
-//				boardService.setUpdateHit(boardDTO);
-//			}
-//		}
-		boardDTO = boardService.getDetail(boardDTO);
-		mv.addObject("detail", boardDTO);
-		mv.setViewName("board/detail");
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		mv.addObject("detail", noticeDTO);
+		mv.setViewName("notice/detail");
 		
 		return mv;
 	}
@@ -58,9 +55,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO) throws Exception {
+	public String setAdd(NoticeDTO noticeDTO) throws Exception {
 		System.out.println("Add 진행");
-		int result = boardService.setAdd(boardDTO);
+		int result = noticeService.setAdd(noticeDTO);
 		System.out.println(result==1);
 		
 		return "redirect:./list.iu";
@@ -68,29 +65,27 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="update.iu", method = RequestMethod.GET)
-	public void setUpdate(Model model,BoardDTO boardDTO) throws Exception {
+	public void setUpdate(Model model,NoticeDTO noticeDTO) throws Exception {
 		System.out.println("업데이트 페이지");
-		boardDTO = boardService.getDetail(boardDTO);
-		model.addAttribute("update", boardDTO);
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		model.addAttribute("update", noticeDTO);
 	}
 	
 	@RequestMapping(value="update.iu", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO) throws Exception {
+	public String setUpdate(NoticeDTO noticeDTO) throws Exception {
 		System.out.println("업데이트 중");
-		int result = boardService.setUpdate(boardDTO);
+		int result = noticeService.setUpdate(noticeDTO);
 		System.out.println(result==1);
 		
 		return "redirect:./list.iu";
 	}
 	
 	@RequestMapping(value="delete.iu", method = RequestMethod.GET)
-	public String setDelete(BoardDTO boardDTO) throws Exception {
+	public String setDelete(NoticeDTO noticeDTO) throws Exception {
 		System.out.println("삭제");
-		int result = boardService.setDelete(boardDTO);
+		int result = noticeService.setDelete(noticeDTO);
 		System.out.println(result==1);
 		
 		return "redirect:./list.iu";
 	}
-	
-	
 }

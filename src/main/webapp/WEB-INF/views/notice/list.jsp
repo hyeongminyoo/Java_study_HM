@@ -25,10 +25,10 @@
 		<tbody>
 				<c:forEach items="${requestScope.list}" var="dto">
 			<tr>
-					<td>${pageScope.dto.postNum}</td>
-					<td><a href = "./detail.iu?title=${pageScope.dto.title}&userName=${pageScope.dto.userName}&postNum=${pageScope.dto.postNum}">${pageScope.dto.title}</a></td>
-					<td>${pageScope.dto.userName}</td>
-					<td>${pageScope.dto.postDate}</td>
+					<td>${pageScope.dto.num}</td>
+					<td><a href = "./detail.iu?title=${pageScope.dto.title}&writer=${pageScope.dto.writer}&num=${pageScope.dto.num}">${pageScope.dto.title}</a></td>
+					<td>${pageScope.dto.writer}</td>
+					<td>${pageScope.dto.regDate}</td>
 					<td>${pageScope.dto.hit}</td>
 			</tr>
 				</c:forEach>
@@ -37,7 +37,7 @@
 	</table>
 	
 	<c:if test="${not empty sessionScope.member}">
-	<a href="./add.iu?username=${sessionScope.member.userName}">글 작성하기</a>
+	<a href="./add.iu?userName=${sessionScope.member.userName}">글 작성하기</a>
 	</c:if>
 
 <c:import url="../template/footer.jsp"></c:import>

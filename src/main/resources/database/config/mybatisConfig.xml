@@ -10,5 +10,6 @@
 		<typeAlias type="com.hm.start.bankAccount.BankAccountDTO" alias="BanKAccountDTO"/>
 		<typeAlias type="com.hm.start.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.hm.start.board.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.hm.start.notice.NoticeDTO" alias="NoticeDTO"/>
 	</typeAliases>
 </configuration>
