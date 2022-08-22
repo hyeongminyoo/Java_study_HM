@@ -7,4 +7,23 @@
 	<insert id="add" parameterType="BankAccountDTO">
 		INSERT INTO BANKACCOUNT(ACCOUNTNUM, USERNAME, BOOKNUM, ACCOUNTDATE) VALUES(ACCOUNT_SEQ.NEXTVAL,#{userName},#{bookNum},SYSDATE)
 	</insert>
+	
+
+	
+	
+	<select id="getListByUserName" parameterType="BankMembersDTO" resultMap="getListByUserNameResult">
+		SELECT BA.ACCOUNTNUM, BB.BOOKNAME, BA.ACCOUNTDATE FROM BANKACCOUNT BA INNER JOIN BANKBOOK BB ON BA.BOOKNUM = BB.BOOKNUM WHERE USERNAME=#{userName}
+	</select>
+	
+	<resultMap type="BankAccountDTO" id="getListByUserNameResult">
+    	<id column="ACCOUNTNUM" property="accountNum"></id>
+    	<result column="ACCOUNTDATE" property="accountDate"/>
+    	
+    	<association property="bankBookDTO" javaType="BankBookDTO">
+    		<result column="BOOKNAME" property="bookName"/>
+    	</association>
+	</resultMap>
+ 	
+	
+	
 </mapper>

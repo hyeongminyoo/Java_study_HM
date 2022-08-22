@@ -16,7 +16,7 @@
                 <a class="nav-link active" href="/member/search.iu">회원검색</a>
              	<c:choose>
              		<c:when test="${not empty sessionScope.member}">
-                		<a class="nav-link active" href="/member/mypage.iu">마이페이지</a>
+                		<a class="nav-link active" href="/member/myPage.iu">마이페이지</a>
                 		<a class="nav-link active" href="/member/logout.iu">로그아웃</a>
                 	</c:when>
                 	<c:otherwise>

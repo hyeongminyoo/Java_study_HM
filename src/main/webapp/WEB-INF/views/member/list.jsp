@@ -11,7 +11,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<table class="table table-striped table-hover" border="1">
-		<thead>
+		<thead class="table-dark">
 			<tr>
 				<th>ID</th>
 				<th>이름</th>

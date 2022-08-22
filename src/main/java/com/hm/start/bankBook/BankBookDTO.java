@@ -1,6 +1,9 @@
 package com.hm.start.bankBook;
 
 import java.util.Calendar;
+import java.util.List;
+
+import com.hm.start.bankAccount.BankAccountDTO;
 
 public class BankBookDTO {
 	
@@ -9,8 +12,16 @@ public class BankBookDTO {
 	private Double bookRate;
 	private Integer bookSale;
 	private String bookContents;
+	private List<BankAccountDTO> bankAccountDTOs;
 	
 	
+	
+	public List<BankAccountDTO> getBankAccountDTOs() {
+		return bankAccountDTOs;
+	}
+	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTOs) {
+		this.bankAccountDTOs = bankAccountDTOs;
+	}
 	public String getBookContents() {
 		return bookContents;
 	}

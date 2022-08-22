@@ -46,4 +46,5 @@ public class BankBookDAO {
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 	}
+	
 }

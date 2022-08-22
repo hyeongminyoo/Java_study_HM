@@ -33,16 +33,15 @@
 	</tbody>
 	
 	</table>
-	
+	<section class="container-fluid col-lg-5 mt-5">
 	<div class="card" style="width: 18rem;">
   	<div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <h5 class="card-title">BookContents</h5>
+    <h6 class="card-subtitle mb-2">상품 설명</h6>
     <p class="card-text">${requestScope.detail.bookContents}</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
   	</div>
 	</div>
+	</section>
 	
 	<a href="../member/login.iu">Login</a>
 	<!-- 절대경로 -->
