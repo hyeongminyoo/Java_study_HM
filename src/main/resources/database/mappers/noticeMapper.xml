@@ -2,24 +2,27 @@
 <!DOCTYPE mapper
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hm.start.notice.NoticeDAO">
+		    
+<mapper namespace="com.hm.start.board.notice.NoticeDAO">
 	<select id="getList" resultType="NoticeDTO">
-		SELECT * FROM NOTICE
+		SELECT NUM, TITLE, WRITER, REGDATE,HIT FROM NOTICE ORDER BY NUM DESC
 	</select>
-	<insert id="setAdd" parameterType="NoticeDTO">
-		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT) VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, SYSDATE,0)
+	
+	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
+		SELECT * FROM NOTICE WHERE NUM = #{num}
+	</select>
+	
+	<insert id="setAdd" parameterType="BoardDTO">
+		INSERT INTO NOTICE
+		VALUES(BOARD_SEQ.NEXTVAL, #{title} , #{contents}, #{writer}, SYSDATE, 0)
 	</insert>
-	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE TITLE = #{title}
-	</select>
-	<update id="setUpdate" parameterType="NoticeDTO">
-		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+	
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents}
+		WHERE NUM=#{num}
 	</update>
-	<delete id="setDelete" parameterType="NoticeDTO">
-		DELETE NOTICE WHERE NUM = #{num}
+	
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
-	<update id="setUpdateHit" parameterType="NoticeDTO">
-		UPDATE NOTICE SET HIT = HIT+1 WHERE NUM=#{num}
-	</update>
-
 </mapper>
