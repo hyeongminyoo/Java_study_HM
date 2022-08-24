@@ -20,6 +20,38 @@ public class NoticeDAOTest extends MyAbstractTest {
 	@Test
 	public void noticeTest() throws Exception {
 		
+		Long perPage = 10L;
+		
+		Long totalCount = noticeDAO.getCount();
+		Long totalPage = totalCount/perPage;
+		
+		if(totalCount%perPage != 0) {
+			totalPage += 1;
+		}
+		
+		System.out.println(totalPage);
+		
+		Long perBlock = 5L;
+		Long totalBlock = totalPage/perBlock;
+		
+		if(totalPage%perBlock !=0) {
+			totalBlock++;
+		}
+		
+		Long page = 3L;
+		Long curBlock = page/perBlock;
+		
+		if(page%perBlock != 0) {
+			curBlock++;
+		}
+		
+		Long lastNum = curBlock*perBlock;
+		Long startNum = (curBlock-1)*perBlock+1;
+		
+		System.out.println(startNum);
+		System.out.println(lastNum);
+		System.out.println(curBlock);
+		System.out.println(totalBlock);
 		
 //		for(int i=0; i<100 ; i++) {
 //			NoticeDTO noticeDTO = new NoticeDTO();
@@ -36,9 +68,9 @@ public class NoticeDAOTest extends MyAbstractTest {
 		
 		
 		
-		Long count = noticeDAO.getCount();
-		
-		System.out.println(count);
+//		Long count = noticeDAO.getCount();
+//		
+//		System.out.println(count);
 //		List<BoardDTO> ar = noticeDAO.getList();
 //		
 //		assertNotEquals(0, ar.size());
