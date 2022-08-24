@@ -11,8 +11,8 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-
 <section class="container-fluid col-lg-5 mt-5">
+<h1 class="align-center">${requestScope.board}</h1>
 <div class="row">
 	<table class="table">
 		<thead>
@@ -24,7 +24,7 @@
 			<c:forEach items="${requestScope.list}" var="dto">
 			<tr>
 				<td>${pageScope.dto.num}</td>
-				<td><a href="./detail.iu?num=${pageScope.dto.num}">${pageScope.dto.title}<</a></td>
+				<td><a href="./detail.iu?num=${pageScope.dto.num}">${pageScope.dto.title}</a></td>
 				<td>${pageScope.dto.writer}</td>
 				<td>${pageScope.dto.regDate}</td>
 				<td>${pageScope.dto.hit}</td>
@@ -32,6 +32,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="mb-3">
+		<a href="./add.iu" class="btn btn-primary">글 작성하기</a>
+	</div>
 </div>
 </section>	
 <c:import url="../template/footer.jsp"></c:import>

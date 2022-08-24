@@ -14,7 +14,7 @@
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-5 mt-5">
 	<div class="row">
-	<h1>Detail Page</h1>
+	<h1 class="align-center">${requestScope.board} 상세</h1>
 	<table border="1" class="table">
 	
 	<thead>
@@ -43,10 +43,12 @@
 	</div>
 	</section>
 	
-
-	<a href="./update.iu?num=${requestScope.boardDTO.num}">수정</a>
-	<a href="./delete.iu?num=${requestScope.boardDTO.num}">삭제</a>
-	
+	<div class="mb-3">
+	<a href="./update.iu?num=${requestScope.boardDTO.num}" class="btn btn-primary">수정</a>
+	</div>
+	<div class="mb-3">
+	<a href="./delete.iu?num=${requestScope.boardDTO.num}" class="btn btn-primary">삭제</a>
+	</div>
 	</div>
 	</section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

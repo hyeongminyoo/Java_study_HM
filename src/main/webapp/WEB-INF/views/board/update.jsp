@@ -14,17 +14,16 @@
 	
 	<section class="container-fluid col-lg-5 mt-5">
 	<div class="row">
-	<h3>BankBookUpdate Page</h3>
+	<h1 class="align-center">${requestScope.board} 수정</h1>
 	<form action="update.iu" method = "POST">
 
 	<div>
 		제목 <input type="text" name="bookName" value="${requestScope.boardDTO.title}" >
 	</div>
 	<div>
-		<textarea rows="10" cols="40" name="bookContents">${requestScope.boardDTO.contents}</textarea>
+		내용 <textarea rows="10" cols="40" name="bookContents">${requestScope.boardDTO.contents}</textarea>
 	</div>
 		<button type="submit">수정</button>
-		<input type="submit" value="수정">
 	</form>
 	</div>
 	</section>
