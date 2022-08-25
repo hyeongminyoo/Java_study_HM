@@ -83,10 +83,10 @@ public class Pager {
 			pre = true;
 		}
 		
-		if(curBlock<=totalBlock) {
+		if(curBlock<totalBlock) {
 			next = true;
 		}
-		
+
 	}
 	
 	public Long getPage() {
