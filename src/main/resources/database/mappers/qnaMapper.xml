@@ -4,8 +4,44 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.hm.start.board.qna.QnaDAO">
-	<select id="getList" resultType="QnaDTO">
-		SELECT * FROM QNA ORDER BY NUM DESC
+	<insert id="setReplyAdd" parameterType="QnaDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT, REF, STEP, DEPTH)
+		VALUES(#{num}, #{title}, #{contents},#{writer},SYSDATE, 0, #{ref}, #{step}, #{depth})
+	</insert>
+
+	<update id="setStepUpdate" parameterType="QnaDTO">
+		UPDATE QNA 
+		SET STEP = STEP+1
+		WHERE REF = #{ref} AND STEP > #{step}
+	</update>
+	
+	<sql id="search">
+		(SELECT ROWNUM R, N.* FROM
+		(SELECT * FROM QNA 
+		
+			WHERE
+				<choose>
+					<when test="kind == 'title'">TITLE</when>
+					<when test="kind == 'writer'">WRITER</when>
+					<otherwise>CONTENTS</otherwise>
+				</choose>
+			LIKE '%'||#{search}||'%'
+		ORDER BY REF DESC, STEP ASC) N)
+	
+	</sql>
+	
+	<select id="getList" parameterType="Pager" resultType="QnaDTO">
+		SELECT * FROM
+		<include refid="search"></include>
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="getCount" parameterType="Pager" resultType="Long">
+		SELECT COUNT(NUM) FROM
+		<include refid="search"></include>
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
@@ -13,8 +49,11 @@
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO QNA
-		VALUES(BOARD_SEQ.NEXTVAL, #{title} , #{contents}, #{writer}, SYSDATE, 0, 0, 0, 0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT, REF, STEP, DEPTH)
+		VALUES(#{num}, #{title} , #{contents}, #{writer}, SYSDATE, 0, #{num}, 0, 0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">

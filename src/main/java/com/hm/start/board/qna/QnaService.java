@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.hm.start.board.impl.BoardDTO;
 import com.hm.start.board.impl.BoardService;
+import com.hm.start.util.Pager;
 
 @Service
 public class QnaService implements BoardService {
@@ -17,14 +18,35 @@ public class QnaService implements BoardService {
 	private QnaDAO qnaDAO;
 	
 	
-	@Override
-	public List<BoardDTO> getList(Long page) throws Exception {
-		// TODO Auto-generated method stub
+	
+	public int setReply(QnaDTO qnaDTO) throws Exception{
 		
-		Map<String, Long> map = new HashMap<String, Long>();
-		return qnaDAO.getList(map);
+		BoardDTO boardDTO = qnaDAO.getDetail(qnaDTO);
+		QnaDTO parent = (QnaDTO)boardDTO;
+		
+		qnaDTO.setRef(parent.getRef());
+		qnaDTO.setStep(parent.getStep()+1);
+		qnaDTO.setDepth(parent.getDepth()+1);
+		
+		qnaDAO.setStepUpdate(parent);
+		int result = qnaDAO.setReplyAdd(qnaDTO);
+		
+		return result;
 	}
-
+	
+	
+	
+	@Override
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		pager.getRowNum();
+		Long totalCount = qnaDAO.getCount(pager);
+		pager.getNum(totalCount);
+		
+		return qnaDAO.getList(pager);
+	}
+	
+	
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -34,7 +56,10 @@ public class QnaService implements BoardService {
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return qnaDAO.setAdd(boardDTO);
+		System.out.println("Insert전:"+boardDTO.getNum());
+		int result = qnaDAO.setAdd(boardDTO);
+		System.out.println("Insert전:"+boardDTO.getNum());
+		return result;
 	}
 
 	@Override

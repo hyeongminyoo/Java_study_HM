@@ -13,9 +13,9 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-5 mt-5">
-	<div class="row">
 	<h1 class="align-center">${requestScope.board} 상세</h1>
-	<table border="1" class="table">
+
+	<table class="table">
 	
 	<thead>
 		<tr>
@@ -31,26 +31,24 @@
 			
 		</tr>
 	</tbody>
-	
 	</table>
-	<section class="container-fluid col-lg-5 mt-5">
-	<div class="card" style="width: 18rem;">
-  	<div class="card-body">
-    <h5 class="card-title">Contents</h5>
-    <h6 class="card-subtitle mb-2">내용</h6>
-    <p class="card-text">${requestScope.boardDTO.contents}</p>
-  	</div>
-	</div>
+	
+			<div class="form-floating">
+  			<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+  			<label for="floatingTextarea2">${boardDTO.contents}</label>
+			</div>
+	
+
+	<a href="./reply.iu?num=${boardDTO.num}" class="btn btn-danger">reply</a>
+
+
+	<a href="./update.iu?num=${requestScope.boardDTO.num}" class="btn btn-primary">수정</a>
+
+
+	<a href="./delete.iu?num=${requestScope.boardDTO.num}" class="btn btn-primary">삭제</a>
+
 	</section>
 	
-	<div class="mb-3">
-	<a href="./update.iu?num=${requestScope.boardDTO.num}" class="btn btn-primary">수정</a>
-	</div>
-	<div class="mb-3">
-	<a href="./delete.iu?num=${requestScope.boardDTO.num}" class="btn btn-primary">삭제</a>
-	</div>
-	</div>
-	</section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

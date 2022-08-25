@@ -16,17 +16,25 @@
 	<div class="row">
 	<h1 class="align-center">${requestScope.board} 수정</h1>
 	<form action="update.iu" method = "POST">
-
-	<div>
-		제목 <input type="text" name="bookName" value="${requestScope.boardDTO.title}" >
+	<div class="mb-3">
+  		<label for="writer" class="form-label">작성자</label>
+  		<input type="text" class="form-control" id="writer" name="writer" placeholder="${requestScope.boardDTO.writer}">
 	</div>
-	<div>
-		내용 <textarea rows="10" cols="40" name="bookContents">${requestScope.boardDTO.contents}</textarea>
+	<div class="mb-3">
+  		<label for="title" class="form-label">제목</label>
+  		<input type="text" class="form-control" id="title" name="title" placeholder="${requestScope.boardDTO.title}">
 	</div>
-		<button type="submit">수정</button>
+	<div class="mb-3">
+  		<label for="contents" class="form-label">내용</label>
+  		<textarea class="form-control" id="contents" rows="3" name="contents" placeholder="${requestScope.boardDTO.contents}"></textarea>
+	</div>
+	<button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
 	</form>
 	</div>
 	</section>
+	
+	
+
 	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <c:import url="../template/footer.jsp"></c:import>

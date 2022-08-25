@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hm.start.board.impl.BoardDTO;
+import com.hm.start.util.Pager;
 
 @Controller
 @RequestMapping(value = "/qna/*")
@@ -26,10 +29,27 @@ public class QnaController {
 	
 	//글 목록
 	@RequestMapping(value = "list.iu" , method = RequestMethod.GET)
-	public String getList(Long page, Model model) throws Exception{
-		List<BoardDTO> ar= qnaService.getList(page);
+	public String getList(Pager pager, Model model) throws Exception{
+		List<BoardDTO> ar= qnaService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		return "board/list";
+	}
+	
+	@GetMapping(value = "reply.iu")
+	public ModelAndView setReply(BoardDTO boardDTO,ModelAndView mv) throws Exception{
+		
+		mv.addObject("boardDTO", boardDTO);
+		mv.setViewName("board/reply");
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "reply.iu")
+	public String setReply(QnaDTO qnaDTO) throws Exception{
+		int result = qnaService.setReply(qnaDTO);
+
+		return "redirect:./list.iu";
 	}
 	
 	//글 상세 

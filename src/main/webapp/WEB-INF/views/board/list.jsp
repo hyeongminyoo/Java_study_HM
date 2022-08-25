@@ -13,7 +13,32 @@
 <c:import url="../template/header.jsp"></c:import>
 <section class="container-fluid col-lg-5 mt-5">
 <h1 class="align-center">${requestScope.board}</h1>
-<div class="row">
+	<div class="row">
+		<form action="./list.iu?" class="row row-cols-lg-auto g-3 align-items-center">
+		
+		  <div class="col-12">
+		    <label class="visually-hidden" for="kind">Preference</label>
+		    <select name="kind" class="form-select" id="kind">
+		      <option value="contents">내용</option>
+		      <option value="title">제목</option>
+		      <option value="writer">작성자</option>
+		    </select>
+		  </div>
+		
+		  <div class="col-12">
+		    <label class="visually-hidden" for="search">검색어 입력</label>
+		    <div class="input-group">
+		      <input type="text" name="search" class="form-control" id="search" placeholder="검색어 입력">
+		    </div>
+		  </div>
+	
+		  <div class="col-12">
+		    <button type="submit" class="btn btn-primary">Submit</button>
+		  </div>
+		</form>
+	</div>
+
+	<div class="row">
 	<table class="table">
 		<thead>
 			<tr>
@@ -24,7 +49,13 @@
 			<c:forEach items="${requestScope.list}" var="dto">
 			<tr>
 				<td>${pageScope.dto.num}</td>
-				<td><a href="./detail.iu?num=${pageScope.dto.num}">${pageScope.dto.title}</a></td>
+				<td>
+				<%-- for(int i = begin; i<= end; i++ --%>
+				<c:catch>
+				<c:forEach begin="1" end="${dto.depth}">&ensp;</c:forEach>
+				</c:catch>
+				<a href="./detail.iu?num=${pageScope.dto.num}">${pageScope.dto.title}</a>
+				</td>
 				<td>${pageScope.dto.writer}</td>
 				<td>${pageScope.dto.regDate}</td>
 				<td>${pageScope.dto.hit}</td>
@@ -33,14 +64,14 @@
 		</tbody>
 	</table>
 	<div class="mb-3">
-		<a href="./add.iu" class="btn btn-primary">글 작성하기</a>
+		<a href="./add.iu" class="btn btn-primary">Add</a>
 	</div>
 	
 	<nav aria-label="Page navigation example">
   		<ul class="pagination">
     	<c:if test="${pager.pre}">
     	<li class="page-item">
-      		<a class="page-link" href="./list.iu?page=${pager.startNum-1}" aria-label="Previous">
+      		<a class="page-link" href="./list.iu?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
         		<span aria-hidden="true">&laquo;</span>
       		</a>
     	</li>
@@ -58,15 +89,13 @@
     		</c:otherwise>
     	</c:choose> --%>
     	<li class="page-item ${pager.next?'':'disabled'}">
-     		 <a class="page-link" href="./list.iu?page=${pager.lastNum+1}" aria-label="Next">
+     		 <a class="page-link" href="./list.iu?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
        			 <span aria-hidden="true">&raquo;</span>
       		</a>
     	</li>
   		</ul>
 	</nav>
-	
-	
-</div>
+	</div>
 </section>	
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

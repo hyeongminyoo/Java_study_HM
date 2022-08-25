@@ -27,6 +27,11 @@ public class Pager {
 	//다음 블럭의 유무
 	private boolean next;
 	
+	//검색 컬럼의 종류
+	private String kind;
+	//검색어
+	private String search;
+	
 	public Pager() {
 		this.perPage=10L;
 		this.perBlock=5L;
@@ -44,10 +49,10 @@ public class Pager {
 	public void getNum(Long totalCount) throws Exception{
 		//1.totalCount로 totalPage 구하기
 		Long totalPage = totalCount/this.getPerPage();
-		if(totalCount/this.getPerPage() != 0) {
+		if(totalCount%this.getPerPage() != 0) {
 			totalPage++;
 		}
-		
+	
 		//1.1 totalPage보다 page가 더 클 경우
 		if(this.getPage()>totalPage) {
 			this.setPage(totalPage);
@@ -56,7 +61,7 @@ public class Pager {
 		
 		//2.totalPage로 totalBlock 구하기
 		Long totalBlock = totalPage/this.getPerBlock();
-		if(totalPage/this.getPerBlock() != 0) {
+		if(totalPage%this.getPerBlock() != 0) {
 			totalBlock++;
 		}
 		
@@ -75,7 +80,7 @@ public class Pager {
 		
 		//5. curBlock 이 totalBlock 과 같을 때
 		if(curBlock == totalBlock) {
-			this.lastNum = totalPage;
+			this.lastNum=totalPage;
 		}
 		
 		//6. 이전, 다음 블럭의 유무
@@ -160,6 +165,29 @@ public class Pager {
 
 	public void setNext(boolean next) {
 		this.next = next;
+	}
+
+
+	public String getKind() {
+		return kind;
+	}
+
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	
 	

@@ -65,11 +65,18 @@ public class QnaDAOTest extends MyAbstractTest {
 	@Test
 	public void test4() throws Exception{
 		
+		for(int i=0; i<100 ; i++) {
 		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setNum(41L);
+		qnaDTO.setTitle("Test"+i);
+		qnaDTO.setWriter("Writer"+i);
+		qnaDTO.setContents("Contents"+i);
 		
-		int result = qnaDAO.setDelete(qnaDTO);
-		assertNotEquals(0, result);
+		int result = qnaDAO.setAdd(qnaDTO);
+		
+		if(i%10==0) {
+			Thread.sleep(500);
+		}
+	}
 		
 	}
 	
