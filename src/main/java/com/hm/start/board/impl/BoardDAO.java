@@ -24,5 +24,8 @@ public interface BoardDAO {
 	
 	//글 갯수 출력
 	public Long getCount(Pager pager) throws Exception;
-
+	
+	//파일 받기
+	public int setAddFile(BoardFileDTO boardFileDTO) throws Exception;
+	
 }

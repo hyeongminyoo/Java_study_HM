@@ -86,9 +86,13 @@
 			</tr>
 			</c:forEach>
 		</tbody> 
-	</table>
-	
+	</table>	
 	</div>
+	
+	<div class="row">
+		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
+	</div>
+	
 	</section>
 
 

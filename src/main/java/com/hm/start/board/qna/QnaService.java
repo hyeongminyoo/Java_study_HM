@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hm.start.board.impl.BoardDTO;
 import com.hm.start.board.impl.BoardService;
@@ -54,7 +55,7 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("Insert전:"+boardDTO.getNum());
 		int result = qnaDAO.setAdd(boardDTO);

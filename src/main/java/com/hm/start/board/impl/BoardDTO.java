@@ -2,6 +2,8 @@ package com.hm.start.board.impl;
 
 import java.sql.Date;
 
+import com.hm.start.file.FileDTO;
+
 public class BoardDTO {
 	
 	private Long num;
@@ -10,7 +12,6 @@ public class BoardDTO {
 	private String contents;
 	private Date regDate;
 	private Long hit;
-	
 	
 	public Long getNum() {
 		return num;

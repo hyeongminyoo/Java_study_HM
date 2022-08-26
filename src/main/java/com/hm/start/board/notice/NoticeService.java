@@ -1,13 +1,22 @@
 package com.hm.start.board.notice;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.hm.start.bankMembers.BankMembersDAO;
+import com.hm.start.bankMembers.BankMembersFileDTO;
 import com.hm.start.board.impl.BoardDTO;
+import com.hm.start.board.impl.BoardFileDTO;
 import com.hm.start.board.impl.BoardService;
 import com.hm.start.util.Pager;
 
@@ -16,6 +25,8 @@ public class NoticeService implements BoardService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -108,9 +119,56 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+		int result = noticeDAO.setAdd(boardDTO);
+		System.out.println("공지사항 번호:"+boardDTO.getNum());
+		//1. HDD에 파일 저장
+		//1) 파일 저장 위치
+		// 	/resources/upload/notice
+		
+		// 2) 저장할 폴더 실제 경로 반환 (어플리케이션)
+		String realPath = servletContext.getRealPath("resources/upload/notice");
+		System.out.println("realPath : "+realPath);
+		
+		// 3) 저장할 폴더의 정보 가져오기
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		//***** File 첨부 안했을때
+		
+		
+		
+		for(MultipartFile mpf : files) {
+			if(mpf.isEmpty()) {
+				continue;
+			}else {
+	
+			//4) 중복되지 않는 파일명 생성
+			String filename = UUID.randomUUID().toString();
+			filename=filename+"_"+mpf.getOriginalFilename();
+			System.out.println("파일명:"+filename);
+			
+			//5) 하드디스크에 파일 저장
+			// 어느 폴더에 어떤 이름을 저장할 파일 객체 생성
+			file = new File(file, filename); //(경로명, 파일이름)
+			
+			// a.MultipartFile 클래스의 transferTo 메서드 사용
+			mpf.transferTo(file);
+			
+			//2. 저장된 파일 정보 DB 저장
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(filename);
+			boardFileDTO.setOriName(mpf.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			noticeDAO.setAddFile(boardFileDTO);
+			
+			}//if문 끝
+		}//for문 끝
+		
+	
+		return result;
 	}
 
 	@Override

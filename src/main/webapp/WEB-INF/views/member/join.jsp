@@ -12,75 +12,58 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-	<section class="container-fluid">
+	<section class="container-fluid col-lg-5 mt-5">
 		<div class="row">
-		<form action="join.iu" method="post">
+		<form action="join.iu" method="post" enctype="multipart/form-data">
 		            <div class="col-md-6 mb-3">
 		              <label for="name">이름</label>
-		              <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>
+		              <input type="text" class="form-control" id="name" name="name" placeholder="" value="" >
 		              <div class="invalid-feedback">
-		                이름을 입력해주세요.
+		                
 		              </div>
 		            </div>
 		            <div class="col-md-6 mb-3">
 		              <label for="userName">ID</label>
-		              <input type="text" class="form-control" id="userName "name="userName" placeholder="" value="" required>
+		              <input type="text" class="form-control" id="userName "name="userName" placeholder="" value="" >
 		              <div class="invalid-feedback">
-		                ID을 입력해주세요.
+		                
 		              </div>
 		            <div class="col-md-6 mb-3">
 		              <label for="password">비밀번호</label>
-		              <input type="password" class="form-control" id="password" name="password" placeholder="" value="" required>
+		              <input type="password" class="form-control" id="password" name="password" placeholder="" value="" >
 		              <div class="invalid-feedback">
-		                Password를 입력해주세요.
+		                
 		              </div>
 		            </div>
 		          </div>
 		
 		          <div class="mb-3">
 		            <label for="email">이메일</label>
-		            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+		            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" >
 		            <div class="invalid-feedback">
-		              이메일을 입력해주세요.
+		              
 		            </div>
 		          </div>
 		
 		          <div class="mb-3">
-		            <label for="phone">주소</label>
-		            <input type="text" class="form-control" id="phone" name="phone" placeholder="010-1234-5678" required>
+		            <label for="phone">Phone</label>
+		            <input type="text" class="form-control" id="phone" name="phone" placeholder="010-1234-5678" >
 		            <div class="invalid-feedback">
-		              주소를 입력해주세요.
+		              
+		            </div>
+		          </div>
+				
+				 <div class="mb-3">
+		            <label for="files">Photo</label>
+		            <input type="file" class="form-control" id="files" name="photo" >
+		            <div class="invalid-feedback">
+		             
 		            </div>
 		          </div>
 		
-		
-		          <div class="row">
-		            <div class="col-md-8 mb-3">
-		              <label for="root">가입 경로</label>
-		              <select class="custom-select d-block w-100" id="root">
-		                <option value=""></option>
-		                <option>검색</option>
-		                <option>카페</option>
-		              </select>
-		              <div class="invalid-feedback">
-		                가입 경로를 선택해주세요.
-		              </div>
-		            </div>
-		            <div class="col-md-4 mb-3">
-		              <label for="code">추천인 코드</label>
-		              <input type="text" class="form-control" id="code" placeholder="" required>
-		              <div class="invalid-feedback">
-		                추천인 코드를 입력해주세요.
-		              </div>
-		            </div>
-		          </div>
-		          <hr class="mb-4">
-		          <div class="custom-control custom-checkbox">
-		            <input type="checkbox" class="custom-control-input" id="aggrement" required>
-		            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-		          </div>
+		       
 		          <div class="mb-4"></div>
-		          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+		          <button class="btn btn-primary btn-lg btn-block" type="submit">가입</button>
           </form>
 		</div>
 	</section>

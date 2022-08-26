@@ -35,8 +35,16 @@
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO NOTICE
-		VALUES(BOARD_SEQ.NEXTVAL, #{title} , #{contents}, #{writer}, SYSDATE, 0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT)
+		VALUES(#{num}, #{title} , #{contents}, #{writer}, SYSDATE, 0)
+	</insert>
+	
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILE(FILENUM, FILENAME, ORINAME, NUM)
+		VALUES(FILE_SEQ.NEXTVAL,#{fileName}, #{oriName}, #{num})
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">
