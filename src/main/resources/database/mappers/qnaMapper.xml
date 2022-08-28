@@ -49,11 +49,11 @@
 		<include refid="search"></include>
 	</select>
 	
-	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
-		SELECT QF.NUM, TITLE, CONTENTS, WRITER, HIT, FILENUM, FILENAME
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
+		SELECT QA.NUM, TITLE, CONTENTS, WRITER, HIT, FILENUM, FILENAME
 		FROM QNA QA
 		LEFT JOIN QNAFILE QF ON QA.NUM = QF.NUM
-		WHERE QF.NUM = #{num} 
+		WHERE QA.NUM = #{num} 
 	</select>
 	
 	<resultMap type="QnaDTO" id="getDetailResult">

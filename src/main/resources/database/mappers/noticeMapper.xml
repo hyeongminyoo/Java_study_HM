@@ -25,10 +25,10 @@
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
-		SELECT NF.NUM, TITLE, CONTENTS, WRITER, HIT, FILENUM, FILENAME
+		SELECT NO.NUM, TITLE, CONTENTS, WRITER, HIT, FILENUM, FILENAME
 		FROM NOTICE NO
 		LEFT JOIN NOTICEFILE NF ON NO.NUM = NF.NUM
-		WHERE NF.NUM = #{num} 
+		WHERE NO.NUM = #{num} 
 	</select>
 	
 	<resultMap type="NoticeDTO" id="getDetailResult">
