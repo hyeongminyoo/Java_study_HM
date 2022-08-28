@@ -131,10 +131,10 @@ public class NoticeService implements BoardService {
 		System.out.println("realPath : "+realPath);
 		
 		// 3) 저장할 폴더의 정보 가져오기
-		File file = new File(realPath);
-		if(!file.exists()) {
-			file.mkdirs();
-		}
+//		File file = new File(realPath);
+//		if(!file.exists()) {
+//			file.mkdirs();
+//		}
 		
 		//***** File 첨부 안했을때
 		
@@ -143,8 +143,13 @@ public class NoticeService implements BoardService {
 		for(MultipartFile mpf : files) {
 			if(mpf.isEmpty()) {
 				continue;
-			}else {
-	
+			}
+			
+			File file = new File(realPath);
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+			
 			//4) 중복되지 않는 파일명 생성
 			String filename = UUID.randomUUID().toString();
 			filename=filename+"_"+mpf.getOriginalFilename();
@@ -164,7 +169,7 @@ public class NoticeService implements BoardService {
 			boardFileDTO.setNum(boardDTO.getNum());
 			noticeDAO.setAddFile(boardFileDTO);
 			
-			}//if문 끝
+		
 		}//for문 끝
 		
 	

@@ -25,7 +25,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "Notice";
+		return "notice";
 	}
 	
 	//글목록

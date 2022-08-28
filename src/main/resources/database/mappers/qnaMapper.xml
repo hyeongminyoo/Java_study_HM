@@ -4,6 +4,11 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.hm.start.board.qna.QnaDAO">
+	
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO QNAFILE(FILENUM, FILENAME, ORINAME, NUM)
+		VALUES(FILE_SEQ.NEXTVAL,#{fileName}, #{oriName}, #{num})
+	</insert>
 	<insert id="setReplyAdd" parameterType="QnaDTO">
 		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
@@ -45,8 +50,24 @@
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
-		SELECT * FROM QNA WHERE NUM = #{num}
+		SELECT QF.NUM, TITLE, CONTENTS, WRITER, HIT, FILENUM, FILENAME
+		FROM QNA QA
+		LEFT JOIN QNAFILE QF ON QA.NUM = QF.NUM
+		WHERE QF.NUM = #{num} 
 	</select>
+	
+	<resultMap type="QnaDTO" id="getDetailResult">
+		<id column="NUM" property="num"></id>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="WRITER" property="writer"/>
+		<result column="HIT" property="hit"/>
+		
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"></id>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
 		<selectKey keyProperty="num" order="BEFORE" resultType="Long">

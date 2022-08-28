@@ -33,6 +33,12 @@
 	</tbody>
 	</table>
 	
+	<c:forEach items="${requestScope.boardDTO.boardFileDTOs}" var="dto">
+	<div class="row">
+		<img alt="" src="../resources/upload/${requestScope.board}/${pageScope.dto.fileName}">
+	</div>
+	</c:forEach>
+	
 			<div class="form-floating">
   			<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
   			<label for="floatingTextarea2">${boardDTO.contents}</label>

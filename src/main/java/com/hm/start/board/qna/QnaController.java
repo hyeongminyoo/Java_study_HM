@@ -25,7 +25,7 @@ public class QnaController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "QnA";
+		return "qna";
 	}
 	
 	//글 목록
