@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hm.start.util.Pager;
+
 @Service
 public class BankBookService {
 	
@@ -29,8 +31,13 @@ public class BankBookService {
 	
 	//BankBook 모든 데이터를 조회
 	//최신 순으로(
-	public List<BankBookDTO> getList() throws Exception{
-		return bankBookDAO.getList();
+	public List<BankBookDTO> getList(Pager pager) throws Exception{
+		
+		pager.getRowNum();
+		Long totalCount = bankBookDAO.getCount(pager);
+		pager.getNum(totalCount);
+		
+		return bankBookDAO.getList(pager);
 	}
 	
 	//BOOKSALE의 값을 수정

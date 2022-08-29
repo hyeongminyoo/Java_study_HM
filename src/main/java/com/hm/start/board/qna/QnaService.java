@@ -60,7 +60,7 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
 		
 		int result = qnaDAO.setAdd(boardDTO);
@@ -93,9 +93,11 @@ public class QnaService implements BoardService {
 			//5)하드디스크에 파일 저장
 			//어느 폴더에 어떤 이름을 저장할 파일 객체 생성
 			file = new File(file, filename);
+			//File dest = new File(file,filename);
 			
 			//a.MultipartFile 클래스의 transferTo 메서드
 			mpf.transferTo(file);
+			//mpf.transferTo(dest);
 			
 			//2. 저장된 파일 정보 DB 저장
 			BoardFileDTO boardFileDTO = new BoardFileDTO();

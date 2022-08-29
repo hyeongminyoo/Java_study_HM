@@ -2,6 +2,8 @@ package com.hm.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,9 +75,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public String setAdd(Model model,BoardDTO boardDTO, MultipartFile [] files) throws Exception{
+	public String setAdd(Model model,BoardDTO boardDTO, MultipartFile [] files, ServletContext servletContext) throws Exception{
 		
-		int result = qnaService.setAdd(boardDTO, files);
+		int result = qnaService.setAdd(boardDTO, files, servletContext);
 		
 		
 		model.addAttribute("boardDTO", boardDTO);

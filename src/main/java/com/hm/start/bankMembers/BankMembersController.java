@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +37,14 @@ public class BankMembersController {
 	}
 	
 	@RequestMapping(value="join.iu", method=RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception{
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception{
 		System.out.println("join POST 실행");
 		System.out.println(photo);
 		System.out.println("upload 파일명 : "+ photo.getOriginalFilename());
 		System.out.println("upload 파라미터명 : "+ photo.getName());
 		System.out.println("upload 파일 크기 : " + photo.getSize());
 		
-		int result = bankMembersService.setJoin(bankMembersDTO, photo);
+		int result = bankMembersService.setJoin(bankMembersDTO, photo, session.getServletContext());
 		return "redirect:./login.iu";
 	}
 
@@ -95,6 +96,7 @@ public class BankMembersController {
 //		model.addAttribute("map", map);
 //		List<BankAccountDTO> ar = bankAccountService.getListByUserName(bankMembersDTO);
 		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
+		System.out.println(bankMembersDTO.getBankMembersFileDTO().getFileName());
 		model.addAttribute("dto", bankMembersDTO);
 //		model.addAttribute("list", ar);
 		return "member/myPage";

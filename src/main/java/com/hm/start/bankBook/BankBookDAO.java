@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hm.start.util.Pager;
+
 @Repository
 public class BankBookDAO {
 	
@@ -33,8 +35,12 @@ public class BankBookDAO {
 	
 	//BankBook 모든 데이터를 조회
 	//최신 순으로(
-	public List<BankBookDTO> getList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<BankBookDTO> getList(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
+	}
+	
+	public Long getCount(Pager pager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 	
 	//BOOKSALE의 값을 수정

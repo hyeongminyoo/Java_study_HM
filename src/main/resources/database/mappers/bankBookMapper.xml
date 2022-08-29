@@ -3,8 +3,16 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iu.home.bankBook.BankBookDAO">
-		<select id="getList" resultType="BankBookDTO">
-		SELECT * FROM BANKBOOK ORDER BY BOOKNUM ASC
+	
+	<select id="getCount" parameterType="Pager" resultType="Long">
+		SELECT COUNT(BOOKNUM) FROM BANKBOOK
+	</select>
+	
+	
+	<select id="getList" resultType="BankBookDTO" parameterType="Pager">
+		SELECT * FROM BANKBOOK 
+		WHERE ROWNUM BETWEEN #{startRow} AND #{lastRow}
+		ORDER BY BOOKNUM ASC
 	</select>
 	
 	<select id="getDetail" parameterType="BankBookDTO" resultType="BankBookDTO">

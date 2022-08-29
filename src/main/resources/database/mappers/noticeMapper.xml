@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
-		SELECT NO.NUM, TITLE, CONTENTS, WRITER, HIT, FILENUM, FILENAME
+		SELECT NO.*, NF.*
 		FROM NOTICE NO
 		LEFT JOIN NOTICEFILE NF ON NO.NUM = NF.NUM
 		WHERE NO.NUM = #{num} 
@@ -36,11 +36,13 @@
 		<result column="TITLE" property="title"/>
 		<result column="CONTENTS" property="contents"/>
 		<result column="WRITER" property="writer"/>
+		<result column="REGDATE" property="regDate"/>
 		<result column="HIT" property="hit"/>
 		
 		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 			<id column="FILENUM" property="fileNum"></id>
 			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
 		</collection>
 	</resultMap>
 	

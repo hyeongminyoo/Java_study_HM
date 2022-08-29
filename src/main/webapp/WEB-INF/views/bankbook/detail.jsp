@@ -33,15 +33,11 @@
 	</tbody>
 	
 	</table>
-	<section class="container-fluid col-lg-5 mt-5">
-	<div class="card" style="width: 18rem;">
-  	<div class="card-body">
-    <h5 class="card-title">BookContents</h5>
-    <h6 class="card-subtitle mb-2">상품 설명</h6>
-    <p class="card-text">${requestScope.detail.bookContents}</p>
-  	</div>
-	</div>
-	</section>
+		
+			<div class="form-floating">
+  			<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+  			<label for="floatingTextarea2">${detail.bookContents}</label>
+			</div>
 	
 	<a href="../member/login.iu">Login</a>
 	<!-- 절대경로 -->

@@ -20,7 +20,12 @@
 		BookName <input type="text" name="bookName"><br>
 		BookRate <input type="text" name="bookRate"><br>
 		BookContents <textarea rows="10" cols="30" name="bookContents"></textarea>
-		<input type="submit" value="입력">
+		
+		<div class="mb-3">
+  		<label for="files" class="form-label">파일첨부</label>
+  		<input type="file" class="form-control" id="files" name="files">
+		</div>
+		
 		<button type="submit">Add</button>
 		<input type="reset" value="초기화">	
 	</form>

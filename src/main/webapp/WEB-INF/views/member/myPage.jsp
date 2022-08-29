@@ -90,7 +90,7 @@
 	</div>
 	
 	<div class="row">
-		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
+		<img alt="" src="../resources/upload/member/${requestScope.dto.bankMembersFileDTO.fileName}">
 	</div>
 	
 	</section>
