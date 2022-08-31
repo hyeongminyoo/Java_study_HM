@@ -29,7 +29,7 @@
 					<h5 id="val_pw"></h5>
 				</div>
   				<div>
-  					<button type="button" class="btn btn-primary" id="btn">로그인</button>
+  					<button type="submit" class="btn btn-primary" id="btn">로그인</button>
   				</div>
 			
 			</form>
@@ -42,7 +42,7 @@
 	<script src="/resources/js/member.js">
 	</script>
 	<script>
-		loginCheck();
+		// loginCheck();
 	</script>
 </body>
 </html>
