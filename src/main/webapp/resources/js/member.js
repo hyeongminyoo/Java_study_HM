@@ -39,43 +39,57 @@ function agreeCheck(){
     const all = document.getElementById("all");
     const cb = document.getElementsByClassName("cb");
     const btn2 = document.getElementById("btn2");
-    const frm2 = documnet.getElementById("frm2");
+    const frm2 = document.getElementById("frm2");
     const req = document.getElementsByClassName("req");
 
     all.addEventListener("click",function(){
-        alert("asdf");
-        // for(let i = 0; i<cb.length ; i++){
-        //     cb[i].checked = all.checked;
-        // }
+        for(let i = 0; i<cb.length ; i++){
+            cb[i].checked = all.checked;
+            req[i].checked = all.checked;
+        }
     });
     
     for(let i = 0; i<cb.length; i++){
-        cb[i].addEventListener("click",click);
-    }
-    
-    function click(){
-        let result = true;
-        for(let i=0; i<cb.length; i++){
-            if(!cb[i].checked){
-                result = false;
-                break;
+        cb[i].addEventListener("click",function(){
+            let result = true;
+            for(let i=0; i<cb.length; i++){
+                if(!cb[i].checked){
+                    result=false;
+                    break;
+                }else{
+                    for(let j=0; i<req.length;i++){
+                        if(!req[j].checked){
+                            result=false;
+                            break;
+                        }else{
+                            continue;
+                        }
+                    }
+                }
             }
-        }
-        all.checked = result;
+
+            all.checked = result;
+        });
+    
     }
     
     btn2.addEventListener("click", function(){
-        let result = true;
+        let result = false;
         for(let i=0; i<req.length; i++){
-            if(!req[i].checked){
-                result = false;
+            if(req[i].checked){
+                result = true;
+                continue;
+            }else{
                 break;
             }
         }
+        
+        console.log(result);
+
         if(result){
-            frm2.submit();
-        }else{
             alert("동의가 필요합니다.");
+        }else{
+            frm2.submit();
         }
 
         
@@ -85,5 +99,5 @@ function agreeCheck(){
         //     alert("동의가 필요합니다.");
         // }
     })
-}
 
+}
