@@ -43,9 +43,10 @@ function agreeCheck(){
     const req = document.getElementsByClassName("req");
 
     all.addEventListener("click",function(){
-        for(let i = 0; i<cb.length ; i++){
-            cb[i].checked = all.checked;
-        }
+        alert("asdf");
+        // for(let i = 0; i<cb.length ; i++){
+        //     cb[i].checked = all.checked;
+        // }
     });
     
     for(let i = 0; i<cb.length; i++){
