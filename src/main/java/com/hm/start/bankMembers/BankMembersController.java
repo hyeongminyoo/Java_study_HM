@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +29,13 @@ public class BankMembersController {
 	
 //	@Autowired
 //	private BankAccountService bankAccountService;
+	
+	@GetMapping("agree.iu")
+	public String getAgree() {
+		System.out.println("약관동의 page");
+		return "member/agree";
+	}
+	
 	
 	
 	@RequestMapping(value="join.iu", method=RequestMethod.GET)
