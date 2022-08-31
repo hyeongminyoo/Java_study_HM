@@ -146,13 +146,15 @@ function joinCheck(){
     //정규표현식
     const regex_phone = /\d{3}-\d{4}-\d{4}/;
     const regex_email = /[\w\-\.]+\@[\w]/;
-    const regex_userName1 = /[A-Za-z0-9]/;
+    const regex_userName = /^[A-za-z0-9]{5,15}/g;
+    const regex_password = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const regex_name = /^[가-힣]{2,4}$/;
 
 
 
     userNameInput.addEventListener("blur",function(){
-        if(userNameInput.value.length < 2){
-            userNameInputResult.innerHTML="id는 2글자 이상 입력해주세요.";
+        if(!regex_userName.test(userNameInput.value)){
+            userNameInputResult.innerHTML="5-15자 사이 영문 대소문자 및 숫자 입력";
             idCheck = false;
 
         }else{
@@ -163,12 +165,12 @@ function joinCheck(){
     })
 
     nameInput.addEventListener("blur",function(){
-        if(nameInput.value.length >= 1){
+        if(regex_name.test(nameInput.value)){
             nameCheck = true;
             nameInputResult.innerHTML="";
         }else{
             nameCheck=false;
-            nameInputResult.innerHTML="이름은 1글자 이상 입력해주세요."
+            nameInputResult.innerHTML="2-4자사이 한글로 입력해주세요.";
         }
     })
 
