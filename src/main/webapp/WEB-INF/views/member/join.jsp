@@ -80,7 +80,7 @@
 		
 		       
 		          <div class="mb-4"></div>
-		          <button class="btn btn-primary btn-lg btn-block" id="membersJoinSubmit">가입</button>
+		          <button class="btn btn-primary btn-lg btn-block" id="membersJoinSubmit" type="button">가입</button>
           </form>
 		</div>
 	</section>
