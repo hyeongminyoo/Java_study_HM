@@ -21,12 +21,12 @@
     <h5>전체동의</h5>
     <input type="checkbox" name="" id="all">
     동의1(선택)<input type="checkbox" name="" id="" class="cb">
-    동의2(필수)<input type="checkbox" name="" id="" class="req">
+    동의2(필수)<input type="checkbox" name="" id="" class="cb">
     동의3(필수)<input type="checkbox" name="" id="" class="req">
-    동의4(선택)<input type="checkbox" name="" id="" class="cb">
+    동의4(선택)<input type="checkbox" name="" id="" class="req">
 </div>
 
-<button class="btn btn-primary btn-lg btn-block" id="btn2">가입</button>
+<button class="btn btn-primary btn-lg btn-block" id="btn2" type="button">가입</button>
 </form>
 </section>
 
