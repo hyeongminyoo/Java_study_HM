@@ -54,23 +54,43 @@ function agreeCheck(){
     })
 
     //일부 동의
-    for(let i=0; i<cb.length; i++){
-        cb[i].addEventListener("check",function(){
-            let result = true;
+    for(let i = 0; i<cb.length; i++){
+        // 매개변수가  있을 때
+        // cb[i].addEventListener("click", function(){
+        //     check();
+        // })
+        
+        
+        cb[i].addEventListener("click",check)
+    }
+    
+    for(let i=0; i<req.length; i++){
+        req[i].addEventListener("click", check)
+    }
+
+
+    function check(){
+        let result1 = true;
+        let result2 = true;
+        for(let i=0; i<cb.length; i++){
             if(!cb[i].checked){
-                result = false;
-                return;
-            }else{
-                for(let j=0; j<cb.length; j++){
-                    if(!cb[j].checked){
-                        result = false;
-                        break;
-                    }
-                }
+                result1 = false;
+                break;
             }
-            console.log(result);
-            all.checked = result;
-        })
+        }
+        for(let i=0; i<req.length; i++){
+            if(!req[i].checked){
+                result2 = false;
+                break;
+            }
+        }
+        
+        if(result1 && result2){
+            all.checked = true;
+        }else{
+            all.checked = false;
+        }
+
     }
     
     
@@ -94,12 +114,6 @@ function agreeCheck(){
             frm2.submit();
         }
 
-        
-        // if(all.checked){
-        //     frm2.submit();
-        // }else{
-        //     alert("동의가 필요합니다.");
-        // }
     })
 
 }
@@ -120,7 +134,7 @@ function joinCheck(){
     const emailInputResult = document.getElementById("emailInputResult");
     const phoneInput = document.getElementById("phoneInput");
     const phoneInputResult = document.getElementById("phoneInputResult");
-    
+    const membersJoinSubmit = document.getElementById("membersJoinSubmit");
     //Check 결과
     let idCheck = false;
     let passwordCheck = false;
@@ -148,76 +162,78 @@ function joinCheck(){
         }
     })
 
-    // name.addEventListener("change",function(){
-    //     if(name.value.length < 1){
-    //         h_name.innerText = "1글자 이상";
-    //         name.focus();
-    //     }else{
-    //         h_name.innerText= "";
-    //         return;
-    //     }
-    // });
+    nameInput.addEventListener("blur",function(){
+        if(nameInput.value.length >= 1){
+            nameCheck = true;
+            nameInputResult.innerHTML="";
+        }else{
+            nameCheck=false;
+            nameInputResult.innerHTML="이름은 1글자 이상 입력해주세요."
+        }
+    })
+
+    passwordInput.addEventListener("keyup", function(){
+        if(passwordInput.value.length >= 6){
+            passwordCheck = true;
+            passwordInputResult.innerHTML="";
+        }else if(passwordInput.value.length <6 ){
+            passwordCheck= false;
+            passwordInputResult.innerHTML="pw는 6글자 이상 입력해주세요.";
+
+        }
+
+        if(passwordInput.value != passwordCheckInput.value){
+            passwordCheckInputResult.innerHTML="일치하지 않습니다."
+            passwordCheckInput.value="";
+            pwequalCheck=false;
+        }
+
+
+    })
+
+    passwordCheckInput.addEventListener("blur",function(){
+       if(passwordCheckInput.value==passwordInput.value){
+        passwordCheckInputResult.innerHTML="";
+        pwequalCheck = true;
+       }else{
+        passwordCheckInputResult.innerHTML="일치하지 않습니다."
+        passwordCheckInput.value="";
+        pwequalCheck=false;
+       }
+    
+    })
+
+
+    emailInput.addEventListener("blur",function(){
+        if(emailInput.value.length >= 1){
+            emailCheck = true;
+            emailInputResult.innerHTML="";
+        }else{
+            emailCheck=false;
+            emailInputResult.innerHTML="email은 1글자 이상 입력해주세요."
+        }
+    })
+
+
+    phoneInput.addEventListener("blur",function(){
+        if(phoneInput.value.length >= 1){
+            phoneCheck = true;
+            phoneInputResult.innerHTML="";
+        }else{
+            phoneCheck=false;
+            phoneInputResult.innerHTML="email은 1글자 이상 입력해주세요."
+        }
+    })
 
 
 
-
-    // password1.addEventListener("keyup",function(){
-    //     if(password1.value.length < 6){
-    //         h_password1.innerText="6글자 이상"
-    //         password1.focus();
-    //     }else{
-    //         h_password1.innerText="";
-    //         return;
-    //     }
-    // })
-
-    // password2.addEventListener("blur", function(){
-    //     if(password2.value.length < 6 ){
-    //         h_password2.innerText="6글자 이상"
-    //         password2.focus();
-    //     }else if(password2.value != password1.value){
-    //         h_password2.innerText="불일치";
-    //         password2.focus();
-    //     }else if(password2.value == password2.value){
-    //         h_password2.innerText = "일치";
-    //         return;
-    //     }
-    // })
-
-    // email.addEventListener("change", function(){
-    //     if(email.value.length<1){
-    //         h_email.innerText = "1글자 이상";
-    //         email.focus();
-    //     }else{
-    //         h_email.innerText = "";
-    //         return;
-    //     }
-    // })
-
-    // phone.addEventListener("change",function(){
-    //     if(phone.value.length<1){
-    //         h_phone.innerText="1글자 이상";
-    //         phone.focus();
-    //     }else{
-    //         h_phone.innerText="";
-    //         return;
-    //     }
-    // })
-
-    // join.addEventListener("click",function(){
-    //     if(h_userName.innerText ==""
-    //     && h_name.innerText== "" 
-    //     && h_password1.innerText==""
-    //     && h_password2.innerText == "일치" 
-    //     && h_email.innerText==""
-    //     && h_phone.innerText==""){
-    //         frm3.submit();
-    //     }else{
-    //         frm3.method = "get";
-    //         alert("입력이 필요합니다.");
-    //         return;
-    //     }
-    // })
+    membersJoinSubmit.addEventListener("click",function(){
+        if(idCheck&&nameCheck&&passwordCheck&&pwequalCheck&&emailCheck&&phoneCheck){
+            membersJoinForm.submit();
+        }else{
+            alert("입력이 필요합니다.");
+        }
+    })
 
     
 }
