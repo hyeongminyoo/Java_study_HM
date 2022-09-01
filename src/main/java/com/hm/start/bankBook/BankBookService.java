@@ -1,5 +1,6 @@
 package com.hm.start.bankBook;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class BankBookService {
 	//BOOKNUM은 현재 시간을 밀리세컨즈로 변환하여 입력
 	//BOOKSALE은 처음엔 무조건 1로 입력
 	public int setBankBook(BankBookDTO bankBookDTO) throws Exception{
+		Calendar ca = Calendar.getInstance();
+		bankBookDTO.setBookNum(ca.getTimeInMillis());
 		return bankBookDAO.setBankBook(bankBookDTO);
 	}
 	

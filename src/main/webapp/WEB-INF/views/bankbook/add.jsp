@@ -1,8 +1,6 @@
 
-<%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%! GregorianCalendar ca = new GregorianCalendar();  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +14,6 @@
 <c:import url="../template/header.jsp"></c:import>
 	<h3>Add page</h3>
 	<form action="add.iu" method="POST">
-		Booknum <input type="text" name="bookNum" value="<%=ca.getTimeInMillis() %>" readonly><br>
 		BookName <input type="text" name="bookName"><br>
 		BookRate <input type="text" name="bookRate"><br>
 		BookContents <textarea rows="10" cols="30" name="bookContents"></textarea>

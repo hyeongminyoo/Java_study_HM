@@ -41,19 +41,11 @@
   		<textarea class="form-control" id="contents" rows="3" name="contents" placeholder="내용 입력"></textarea>
 	</div>
 	
-	
-	<div class="mb-3">
-  		<label for="files" class="form-label">파일첨부</label>
-  		<input type="file" class="form-control" id="files" name="files">
+
+	<div id="addFiles">
+		<button type="button" class="btn btn-danger" id="fileAdd">파일 추가</button>
 	</div>
-	<div class="mb-3">
-  		<label for="files" class="form-label">파일첨부</label>
-  		<input type="file" class="form-control" id="files" name="files">
-	</div>
-	<div class="mb-3">
-  		<label for="files" class="form-label">파일첨부</label>
-  		<input type="file" class="form-control" id="files" name="files">
-	</div>
+
 	
 	
 	<button class="btn btn-primary btn-lg btn-block" type="submit">Add</button>
@@ -68,5 +60,6 @@
 <script type="text/javascript">
 	$("#contents1").summernote();
 </script>
+<script src="/resources/js/board_fileAdd.js"></script>
 </body>
 </html>
