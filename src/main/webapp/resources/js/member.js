@@ -34,13 +34,21 @@ function loginCheck(){
     });
 }
 
+//-------------------------------------------------
+//-------------------------------------------------
 //약관동의
 function agreeCheck(){
     const all = document.getElementById("all");
-    const cb = document.getElementsByClassName("cb");
+    // const cb = document.getElementsByClassName("cb");
+    const cb = document.querySelectorAll(".cb");
     const btn2 = document.getElementById("btn2");
     const frm2 = document.getElementById("frm2");
     const req = document.getElementsByClassName("req");
+
+    console.log("forEach");
+    cb.forEach(function(v,i,ar){
+        console.log(v);
+    })
 
 
     //전체동의
@@ -118,6 +126,9 @@ function agreeCheck(){
 
 }
 
+//-------------------------------------------------
+//-------------------------------------------------
+//회원가입 체크
 
 function joinCheck(){
     //생성자
