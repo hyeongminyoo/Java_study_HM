@@ -155,15 +155,15 @@ function joinCheck(){
     let phoneCheck = false;
 
     //정규표현식
-    const regex_phone = /\d{3}-\d{4}-\d{4}/;
+    const regex_phone = /\d{3}-\d{4}-\d{4}$/;
     const regex_email = /[\w\-\.]+\@[\w]/;
     const regex_userName = /^[A-za-z0-9]{5,15}/g;
-    const regex_password = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const regex_password =/^[a-zA-z0-9]{10,15}/;
     const regex_name = /^[가-힣]{2,4}$/;
 
 
 
-    userNameInput.addEventListener("blur",function(){
+    userNameInput.addEventListener("change",function(){
         if(!regex_userName.test(userNameInput.value)){
             userNameInputResult.innerHTML="5-15자 사이 영문 대소문자 및 숫자 입력";
             idCheck = false;
@@ -175,7 +175,7 @@ function joinCheck(){
         }
     })
 
-    nameInput.addEventListener("blur",function(){
+    nameInput.addEventListener("change",function(){
         if(regex_name.test(nameInput.value)){
             nameCheck = true;
             nameInputResult.innerHTML="";
@@ -186,12 +186,12 @@ function joinCheck(){
     })
 
     passwordInput.addEventListener("keyup", function(){
-        if(passwordInput.value.length >= 6){
+        if(regex_password.test(passwordInput.value)){
             passwordCheck = true;
             passwordInputResult.innerHTML="";
-        }else if(passwordInput.value.length <6 ){
+        }else {
             passwordCheck= false;
-            passwordInputResult.innerHTML="pw는 6글자 이상 입력해주세요.";
+            passwordInputResult.innerHTML="pw는 숫자와 영문자조합으로 10-15자리 입력";
 
         }
 
@@ -217,24 +217,24 @@ function joinCheck(){
     })
 
 
-    emailInput.addEventListener("blur",function(){
-        if(emailInput.value.length >= 1){
+    emailInput.addEventListener("change",function(){
+        if(regex_email.test(emailInput.value)){
             emailCheck = true;
             emailInputResult.innerHTML="";
         }else{
             emailCheck=false;
-            emailInputResult.innerHTML="email은 1글자 이상 입력해주세요."
+            emailInputResult.innerHTML="E-mail 형식이 적합하지 않습니다."
         }
     })
 
 
-    phoneInput.addEventListener("blur",function(){
-        if(phoneInput.value.length >= 1){
+    phoneInput.addEventListener("change",function(){
+        if(regex_phone.test(phoneInput.value)){
             phoneCheck = true;
             phoneInputResult.innerHTML="";
         }else{
             phoneCheck=false;
-            phoneInputResult.innerHTML="email은 1글자 이상 입력해주세요."
+            phoneInputResult.innerHTML="전화번호 형식이 적합하지 않습니다."
         }
     })
 
