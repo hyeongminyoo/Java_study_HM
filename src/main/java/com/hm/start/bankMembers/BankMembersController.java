@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hm.start.bankAccount.BankAccountDTO;
 import com.hm.start.bankAccount.BankAccountService;
@@ -70,16 +71,24 @@ public class BankMembersController {
 	}
 	
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST)
-	public String login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+	public ModelAndView login(HttpSession session, BankMembersDTO bankMembersDTO, ModelAndView mv) throws Exception {
 		System.out.println("DB에 로그인 실행");
 		bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
+		int result = 0;
+		String message = "로그인 실패";
+		String url = "./login.iu";
 		if(bankMembersDTO != null) {
-		session.setAttribute("member", bankMembersDTO);
-		return "redirect:../";
-		}else {
-			System.out.println("로그인 실패");
-			return "member/login";
+			session.setAttribute("member", bankMembersDTO);
+			message = "로그인 성공";
+			url = "../";
+			result = 1;
 		}
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.setViewName("common/result");
+		mv.addObject("url", url);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="search.iu", method=RequestMethod.GET)
