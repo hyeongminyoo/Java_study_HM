@@ -13,7 +13,7 @@ public class BankBookDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.home.bankBook.BankBookDAO.";
+	private final String NAMESPACE = "com.hm.start.bankBook.BankBookDAO.";
 	
 	public int setDelete(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", bankBookDTO);
@@ -52,5 +52,6 @@ public class BankBookDAO {
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 	}
+	
 	
 }

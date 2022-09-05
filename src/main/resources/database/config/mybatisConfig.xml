@@ -8,6 +8,7 @@
 		<typeAlias type="com.hm.start.bankMembers.BankMembersDTO" alias="BankMembersDTO"/>
 		<typeAlias type="com.hm.start.bankAccount.BankAccountDTO" alias="BanKAccountDTO"/>
 		<typeAlias type="com.hm.start.bankBook.BankBookDTO" alias="BankBookDTO"/>
+		<typeAlias type="com.hm.start.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
 		<typeAlias type="com.hm.start.board.impl.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.hm.start.board.impl.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.hm.start.board.notice.NoticeDTO" alias="NoticeDTO"/>

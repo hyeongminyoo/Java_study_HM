@@ -22,8 +22,7 @@ public class QnaService implements BoardService {
 	
 	@Autowired
 	private QnaDAO qnaDAO;
-	@Autowired
-	private ServletContext servletContext;
+
 	
 	public int setReply(QnaDTO qnaDTO) throws Exception{
 		

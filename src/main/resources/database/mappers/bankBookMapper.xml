@@ -2,7 +2,7 @@
 		<!DOCTYPE mapper
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.iu.home.bankBook.BankBookDAO">
+<mapper namespace="com.hm.start.bankBook.BankBookDAO">
 	
 	<select id="getCount" parameterType="Pager" resultType="Long">
 		SELECT COUNT(BOOKNUM) FROM BANKBOOK
@@ -37,5 +37,5 @@
 		DELETE BANKBOOK WHERE BOOKNUM = #{bookNum}
 	</delete>
 
-
+	
 </mapper>
