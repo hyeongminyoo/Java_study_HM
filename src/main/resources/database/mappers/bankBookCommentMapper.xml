@@ -7,5 +7,14 @@
 		INSERT INTO BB_COMMENT(NUM, BOOKNUM, WRITER, CONTENTS, REGDATE)
 		VALUES(BOARD_SEQ.NEXTVAL,#{bookNum},#{writer},#{contents},SYSDATE)
 	</insert>
+	
+	<select id="getCommentList" parameterType="CommentPager" resultType="BankBookCommentDTO">
+		SELECT * FROM
+		(SELECT ROWNUM R, BC.* FROM
+			(SELECT * FROM BB_COMMENT
+			WHERE BOOKNUM = #{bookNum}
+			ORDER BY NUM DESC) BC)
+		WHERE R BETWEEN #{startRow} and #{lastRow}
+	</select>
 
 </mapper>

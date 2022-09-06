@@ -6,11 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hm.start.util.CommentPager;
 import com.hm.start.util.Pager;
 
 @Controller
@@ -22,9 +25,48 @@ public class BankBookController {
 	
 	//-----------------------Comment------------------------------
 	@PostMapping("commentAdd")
-	public void setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+	@ResponseBody
+	public String setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		
+		return jsonResult;
 	}
+	
+//	//1. JSP에 출력하고 결과물을 응답으로 보내는법
+//	@GetMapping("commentList")
+//	public ModelAndView getCommentList(CommentPager commentPager) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+//		System.out.println("CommentList");
+//		System.out.println(ar.size());
+//		mv.addObject("ar", ar);
+//		mv.setViewName("common/commentList");
+//		
+//		return mv;
+//		
+//	}
+	
+	//2. JSP에 출력하고 결과물을 응답으로 보내는법
+		@GetMapping("commentList")
+		@ResponseBody
+		public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception{
+			
+			List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+			System.out.println("CommentList");
+			System.out.println(ar.size());
+			
+			//json
+			//DTO == {}
+			// num = 1 == {"num" : 1, "bookNum" : 123, "writer" : "name"}
+			//[{"num" : 1, "bookNum" : 123, "writer" : "name"},{"num" : 1, "bookNum" : 123, "writer" : "name"}...]
+			
+			
+			return ar;
+			
+		}
+	
 	
 	
 	//------------------------------------------------------------
