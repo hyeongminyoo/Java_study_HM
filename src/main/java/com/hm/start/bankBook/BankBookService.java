@@ -11,8 +11,21 @@ import com.hm.start.util.Pager;
 @Service
 public class BankBookService {
 	
+	//--------------------Comment-------------------------
+	@Autowired
+	private BankBookCommentDAO bankBookCommentDAO;
+	
+	public int setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		return bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
+	}
+	
+	
+	
+	//----------------------------------------------------
+	
 	@Autowired
 	private BankBookDAO bankBookDAO;
+	
 	
 	public int setDelete(BankBookDTO bankBookDTO) throws Exception{
 		return bankBookDAO.setDelete(bankBookDTO);
