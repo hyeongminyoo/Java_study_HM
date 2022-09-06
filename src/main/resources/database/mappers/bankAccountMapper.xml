@@ -3,7 +3,7 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
-<mapper namespace="com.iu.home.bankAccount.BankAccountDAO">
+<mapper namespace="com.hm.start.bankAccount.BankAccountDAO">
 	<insert id="add" parameterType="BankAccountDTO">
 		INSERT INTO BANKACCOUNT(ACCOUNTNUM, USERNAME, BOOKNUM, ACCOUNTDATE) VALUES(ACCOUNT_SEQ.NEXTVAL,#{userName},#{bookNum},SYSDATE)
 	</insert>

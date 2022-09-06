@@ -12,7 +12,7 @@ import com.hm.start.bankMembers.BankMembersDTO;
 public class BankAccountDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.home.bankAccount.BankAccountDAO.";
+	private final String NAMESPACE = "com.hm.start.bankAccount.BankAccountDAO.";
 	
 	public int add(BankAccountDTO bankAccountDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"add", bankAccountDTO);

@@ -5,7 +5,7 @@
 <mapper namespace="com.hm.start.bankBook.BankBookCommentDAO">
 	<insert id="setCommentAdd" parameterType="BankBookCommentDTO">
 		INSERT INTO BB_COMMENT(NUM, BOOKNUM, WRITER, CONTENTS, REGDATE)
-		VALUES(BB_COMMENT_SEQ.NEXTVAL,#{bookNum},#{writer},#{contents},SYSDATE)
+		VALUES(BOARD_SEQ.NEXTVAL,#{bookNum},#{writer},#{contents},SYSDATE)
 	</insert>
 
 </mapper>
