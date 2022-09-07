@@ -65,12 +65,49 @@
 
 				  </div>
 			</div>
-			<div id="commentList">
-				
+			<div>
+				<table id="commentList" class="table table-hover">
+
+				</table>
+				<button id="more" class="btn btn-danger">더 보기</button>
 			</div>
 			<!--------COMMENT---------->
 
 		</div>
+		<!--- Modal ----->
+		<div>
+			<button type="button" style="display: none;" id="up" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">댓글 수정</button>
+
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Update</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+					<div class="mb-3">
+						<label for="recipient-name" class="col-form-label">Writer</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="mb-3">
+						<label for="message-text" class="col-form-label">Contents</label>
+						<textarea class="form-control" id="message-text"></textarea>
+					</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary">수정하기</button>
+				</div>
+				</div>
+			</div>
+			</div>
+
+		</div>
+
+
 	</section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <c:import url="../template/footer.jsp"></c:import>

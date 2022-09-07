@@ -30,7 +30,7 @@ public class BankBookCommentDAOTest extends MyAbstractTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void getCommentListTest() throws Exception{
 		CommentPager commentPager = new CommentPager();
 		commentPager.getRowNum();
@@ -39,6 +39,14 @@ public class BankBookCommentDAOTest extends MyAbstractTest {
 		List<BankBookCommentDTO> ar = bankBookCommentDAO.getCommentList(commentPager);
 		
 		assertEquals(5, ar.size());
+	}
+	
+	@Test
+	public void getCommentListTotalCount() throws Exception{
+		CommentPager commentPager = new CommentPager();
+		commentPager.setBookNum(1661998816684L);
+		Long countTotal = bankBookCommentDAO.getCommentListTotalCount(commentPager);
+		System.out.println(countTotal);
 	}
 
 }
