@@ -7,5 +7,27 @@
 		INSERT INTO BB_COMMENT(NUM, BOOKNUM, WRITER, CONTENTS, REGDATE)
 		VALUES(BOARD_SEQ.NEXTVAL,#{bookNum},#{writer},#{contents},SYSDATE)
 	</insert>
-
+	
+	<select id="getCommentList" parameterType="CommentPager" resultType="BankBookCommentDTO">
+		SELECT * FROM
+		(SELECT ROWNUM R, BC.* FROM
+			(SELECT * FROM BB_COMMENT
+			WHERE BOOKNUM = #{bookNum}
+			ORDER BY NUM DESC) BC)
+		WHERE R BETWEEN #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getCommentListTotalCount" parameterType="CommentPager" resultType="Long">
+		SELECT COUNT(NUM) FROM BB_COMMENT
+		WHERE BOOKNUM = #{bookNum}
+	</select>
+	
+	<delete id="setCommentDelete" parameterType="BankBookCommentDTO">
+		DELETE BB_COMMENT WHERE NUM = #{num}
+	</delete>
+	
+	<update id="setCommentUpdate" parameterType="BankBookCommentDTO">
+		UPDATE BB_COMMENT SET CONTENTS = #{contents} WHERE NUM = #{num}
+	</update>
+	
 </mapper>
