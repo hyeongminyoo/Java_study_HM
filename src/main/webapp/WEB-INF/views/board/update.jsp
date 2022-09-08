@@ -17,6 +17,9 @@
 	<div class="row">
 	<h1 class="align-center">${requestScope.board} 수정</h1>
 	<form action="update.iu" method = "POST">
+	<div>
+		<input type="text" style="display: none;" class="form-control" id="num" name="num" readonly value="${requestScope.boardDTO.num}">
+	</div>
 	<div class="mb-3">
   		<label for="writer" class="form-label">작성자</label>
   		<input type="text" class="form-control" id="writer" name="writer" value="${requestScope.boardDTO.writer}" placeholder="${requestScope.boardDTO.writer}">

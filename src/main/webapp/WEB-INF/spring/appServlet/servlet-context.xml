@@ -21,6 +21,32 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Interceptor 설정 -->
+	<!-- Interceptor 용으로 사용할 객체 생성 -->
+	<beans:bean class="com.hm.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
+		<!-- URL Interceptor 맵핑 -->	
+	<interceptors>
+		<!-- <interceptor>
+			URL경로
+			<mapping path="/qna/*"/>
+			<mapping path="/member/myPage.iu"/>
+			<exclude-mapping path="/qna/list.iu"/>
+			<beans:bean class="com.hm.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+		</interceptor> -->
+		<interceptor>
+			<!-- URL 경로 -->
+			<mapping path="/qna/update.iu"/>
+			<mapping path="/notice/update.iu"/>
+			<beans:bean class="com.hm.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<!-- URL 경로 (무조건 매핑 먼저 작성)-->
+			<mapping path="/**"/>
+			<beans:ref bean="testInterceptor"/>
+		</interceptor>
+	</interceptors>	
+	
 	<context:component-scan base-package="com.hm.start" />
 	
 	

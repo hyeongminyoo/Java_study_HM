@@ -89,10 +89,12 @@ public class QnaController {
 	
 	//글 수정
 	@RequestMapping(value = "update.iu" ,method = RequestMethod.GET)
-	public String setUpdate(Model model,BoardDTO boardDTO, QnaDTO qnaDTO) throws Exception{
+	public ModelAndView setUpdate(BoardDTO boardDTO, QnaDTO qnaDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		qnaDTO = (QnaDTO) qnaService.getDetail(boardDTO);
-		model.addAttribute("boardDTO", qnaDTO);
-		return "board/update";
+		mv.addObject("boardDTO", qnaDTO);
+		mv.setViewName("board/update");
+		return mv;
 	}
 	
 	

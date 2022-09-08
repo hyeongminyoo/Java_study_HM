@@ -113,7 +113,6 @@ public class BankMembersController {
 //		model.addAttribute("map", map);
 //		List<BankAccountDTO> ar = bankAccountService.getListByUserName(bankMembersDTO);
 		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
-		System.out.println(bankMembersDTO.getBankMembersFileDTO().getFileName());
 		model.addAttribute("dto", bankMembersDTO);
 //		model.addAttribute("list", ar);
 		return "member/myPage";
