@@ -66,7 +66,7 @@
 				  </div>
 			</div>
 			<div>
-				<table id="commentList" class="table table-hover">
+				<table id="commentList" class="table table-dark table-hover">
 
 				</table>
 				<button id="more" class="btn btn-danger">더 보기</button>
@@ -87,19 +87,20 @@
 				</div>
 				<div class="modal-body">
 					<form>
+						<input type="hidden" id="num">
 					<div class="mb-3">
 						<label for="recipient-name" class="col-form-label">Writer</label>
-						<input type="text" class="form-control" id="recipient-name">
+						<input type="text" class="form-control" id="updateWriter">
 					</div>
 					<div class="mb-3">
 						<label for="message-text" class="col-form-label">Contents</label>
-						<textarea class="form-control" id="message-text"></textarea>
+						<textarea class="form-control" id="updateContents"></textarea>
 					</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">수정하기</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">닫기</button>
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="updateButton">수정하기</button>
 				</div>
 				</div>
 			</div>
