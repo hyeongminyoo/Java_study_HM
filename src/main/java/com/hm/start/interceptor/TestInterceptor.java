@@ -1,4 +1,4 @@
-package com.hm.interceptor;
+package com.hm.start.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

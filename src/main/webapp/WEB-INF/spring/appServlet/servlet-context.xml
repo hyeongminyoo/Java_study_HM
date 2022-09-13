@@ -23,27 +23,24 @@
 	
 	<!-- Interceptor 설정 -->
 	<!-- Interceptor 용으로 사용할 객체 생성 -->
-	<beans:bean class="com.hm.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
-		<!-- URL Interceptor 맵핑 -->	
+	<beans:bean class="com.hm.start.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
+	<beans:bean class="com.hm.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+	<!-- URL Interceptor 맵핑 -->	
 	<interceptors>
-		<!-- <interceptor>
-			URL경로
-			<mapping path="/qna/*"/>
-			<mapping path="/member/myPage.iu"/>
+		<interceptor>
+			<mapping path="/notice/**"/>
+			<mapping path="/qna/**"/>
 			<exclude-mapping path="/qna/list.iu"/>
-			<beans:bean class="com.hm.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
-		</interceptor> -->
-		<interceptor>
-			<!-- URL 경로 -->
-			<mapping path="/qna/update.iu"/>
-			<mapping path="/notice/update.iu"/>
-			<beans:bean class="com.hm.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
+			<exclude-mapping path="/qna/detail.iu"/>
+			<exclude-mapping path="/notice/list.iu"/>
+			<exclude-mapping path="/notice/detail.iu"/>
+			<beans:ref bean="memberInterceptor"/>
 		</interceptor>
-		
 		<interceptor>
-			<!-- URL 경로 (무조건 매핑 먼저 작성)-->
-			<mapping path="/**"/>
-			<beans:ref bean="testInterceptor"/>
+			<mapping path="/notice/**"/>
+			<exclude-mapping path="/notice/list.iu"/>
+			<exclude-mapping path="/notice/detail.iu"/>
+			<beans:ref bean="adminCheckInterceptor"/>
 		</interceptor>
 	</interceptors>	
 	

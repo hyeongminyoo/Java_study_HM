@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.hm.start.bankMembers.BankMembersDTO" alias="BankMembersDTO"/>
+		<typeAlias type="com.hm.start.bankMembers.RoleDTO" alias="RoleDTO"/>
 		<typeAlias type="com.hm.start.bankAccount.BankAccountDTO" alias="BanKAccountDTO"/>
 		<typeAlias type="com.hm.start.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.hm.start.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>

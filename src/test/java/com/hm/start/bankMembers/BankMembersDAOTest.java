@@ -15,7 +15,7 @@ public class BankMembersDAOTest extends MyAbstractTest {
 	private BankMembersDAO bankMembersDAO;
 	
 	
-	@Test
+//	@Test
 	public void getLoginTest() throws Exception{
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUserName("id7");
@@ -38,11 +38,25 @@ public class BankMembersDAOTest extends MyAbstractTest {
 //		assertEquals(1, result);
 //	}
 	
-	@Test
+//	@Test
 	public void getSearchID() throws Exception{
 		String search = "abc";
 		List<BankMembersDTO> ar = bankMembersDAO.getSearchByID(search);
 		assertEquals(1, ar.size());
 	}
+	
+	@Test
+	public void getLoginTEST() throws Exception{
+		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+		bankMembersDTO.setUserName("id7");
+		bankMembersDTO.setPassword("pw7");
+		
+		bankMembersDTO = bankMembersDAO.getLogin(bankMembersDTO);
+		
+		System.out.println(bankMembersDTO.getRoleDTOs().isEmpty());
+		
+	}
+	
+	
 
 }

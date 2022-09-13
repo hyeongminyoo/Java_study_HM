@@ -93,6 +93,15 @@
 		<img alt="" src="../resources/upload/member/${requestScope.dto.bankMembersFileDTO.fileName}">
 	</div>
 	
+	<div class="row">
+		<c:forEach items="${sessionScope.member.roleDTOs}" var="role">
+				<div>${pageScope.role.roleNum}</div><div>${pageScope.role.roleName}</div>
+		</c:forEach>
+		
+		<h1> ${member.roleDTOs.get(0).roleName} 등급 입니다.</h1>
+		<h1> ${member.roleDTOs["0"].roleName} 등급 입니다.</h1>
+	</div>
+	
 	</section>
 
 
