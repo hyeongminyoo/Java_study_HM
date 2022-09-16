@@ -3,11 +3,76 @@
 
 const fileAdd = document.getElementById("fileAdd");
 const addFiles = document.getElementById("addFiles");
+const fileDelete = document.querySelectorAll(".fileDelete"); //forEach 가능
+// const fileDelete = document.getElementsByClassName("fileDelete"); //forEach 불가능
 
+
+// -----------------------------Update 시 fileDelete----------------------------------------
+
+try{
+fileDelete.forEach(function(f){
+    f.addEventListener("click", function(){
+        
+        let check = window.confirm("삭제?");
+
+        if(!check){
+            return;
+        }
+
+        let fileNum = f.getAttribute("data-file-num");
+        
+
+        // 1. 전송할 객체 생성
+        const xhttp = new XMLHttpRequest();
+        
+        //2. Method , URL 준비
+        xhttp.open("POST", "./fileDelete");
+
+        //3. Enctype , Post 방식 일 경우
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //4. 요청 발생 
+        xhttp.send("fileNum="+fileNum);
+
+        //5. 응답처리
+        xhttp.onreadystatechange = function(){
+            if(xhttp.readyState == 4 && xhttp.status == 200){
+                let result = xhttp.responseText.trim();
+                if(result == 1){
+                    console.log(result);
+                    f.parentNode.remove();
+                    i--;
+                }else{
+                    console.log(result);
+                }
+            }
+
+        }
+    
+    })
+});
+
+}catch(e){
+    console.log(e);
+}
+
+// for(fi of fileDelete){
+//     console.log(fi);
+// }
+
+
+//------------------------------- Add 시 file_Add----------------------------------------------------------------------
 
 
 let idx = 0;
 let i = 0;
+
+function setCount(c){
+    if(c >= 0){
+        i = c;
+    }
+}
+
+try{
 fileAdd.addEventListener("click",function(){
     
  
@@ -72,3 +137,6 @@ addFiles.addEventListener("click", function(event){
     }
     
 })
+}catch(e){
+
+}

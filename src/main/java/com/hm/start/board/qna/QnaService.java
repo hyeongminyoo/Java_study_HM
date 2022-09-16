@@ -23,6 +23,12 @@ public class QnaService implements BoardService {
 	@Autowired
 	private QnaDAO qnaDAO;
 
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.setFileDelete(boardFileDTO);
+	}
+	
 	
 	public int setReply(QnaDTO qnaDTO) throws Exception{
 		
@@ -111,7 +117,7 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile [] files, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
 		return qnaDAO.setUpdate(boardDTO);
 	}
