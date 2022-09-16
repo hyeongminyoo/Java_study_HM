@@ -8,6 +8,8 @@ import javax.servlet.ServletContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hm.start.file.FileDTO;
+
 
 
 @Component
@@ -15,6 +17,18 @@ public class FileManager {
 	
 //	@Autowired
 //	private ServletContext servletContext;
+	
+	//delete
+	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO) throws Exception{
+		//1. 실제경로
+		String realPath = servletContext.getRealPath(path);
+		System.out.println(realPath);
+		//2. 
+		File file = new File(realPath, fileDTO.getFileName());
+		
+		return file.delete();
+	}
+	
 	
 	//saver
 	//public void saveFile(ServletContext servletContext) throws Exception
@@ -40,6 +54,7 @@ public class FileManager {
 		return fileName;
 		
 	}
+	
 
 
 	

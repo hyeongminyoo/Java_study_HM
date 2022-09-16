@@ -99,8 +99,8 @@ public class QnaController {
 	
 	
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO) throws Exception{
-		int result = qnaService.setUpdate(boardDTO);
+	public String setUpdate(BoardDTO boardDTO, MultipartFile [] files, ServletContext servletContext) throws Exception{
+		int result = qnaService.setUpdate(boardDTO, files, servletContext);
 		
 		return "redirect:./detail.iu?num="+boardDTO.getNum();
 	}

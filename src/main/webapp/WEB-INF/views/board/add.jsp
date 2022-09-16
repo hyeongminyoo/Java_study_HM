@@ -58,7 +58,7 @@
 
 <c:import url="../template/footer.jsp"></c:import>
 <script type="text/javascript">
-	$("#contents1").summernote();
+	$("#contents").summernote();
 </script>
 <script src="/resources/js/board_fileAdd.js"></script>
 </body>
